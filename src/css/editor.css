@@ -1,0 +1,13 @@
+/*
+ * TinyMCE content stylesheet (wired up in the site's _config.php). Mirrors
+ * the front end's tokens and rich-text styling so editors see what visitors
+ * will see, plus the classes offered in the editor's "Styles" menu.
+ */
+@import "tailwindcss" source(none);
+@import "./theme.css";
+
+@layer base {
+  body.mce-content-body {
+    @apply prose max-w-none bg-base-100 p-4 text-base-content;
+  }
+}

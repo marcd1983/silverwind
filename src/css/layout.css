@@ -1,0 +1,137 @@
+@layer base {
+  html {
+    scroll-padding-top: 5rem;
+  }
+
+  [x-cloak] {
+    display: none !important;
+  }
+}
+
+@layer components {
+  /* Site width + side padding, both from the Settings > Theme tab */
+  .sw-container {
+    @apply mx-auto w-full max-w-site px-gutter;
+  }
+
+  .sw-skip-link {
+    @apply sr-only;
+
+    &:focus {
+      @apply not-sr-only btn btn-primary fixed top-2 left-2 z-[100];
+    }
+  }
+
+  /*
+   * Text tone for content on its own background (hero, sections, cards,
+   * slides). Rich text is recoloured in the utilities layer below.
+   */
+  .sw-tone-light,
+  .sw-tone-dark {
+    color: var(--sw-tone);
+  }
+
+  .sw-tone-light {
+    --sw-tone: #ffffff;
+  }
+
+  .sw-tone-dark {
+    --sw-tone: #111111;
+  }
+
+  /*
+   * Block areas. Top-level blocks set their own width and spacing
+   * (silverwind-blocks): plain blocks with automatic spacing carry
+   * sw-auto-top / sw-auto-bottom, blocks with a background touch.
+   */
+  .sw-elements {
+    @apply flex flex-col;
+  }
+
+}
+
+/*
+ * Block rhythm. In the utilities layer (not components) so these context
+ * rules can override a block's own margin utility, e.g. removing the space
+ * under the page title. Layers beat specificity, so this must stay here.
+ */
+@layer utilities {
+  /*
+   * Rich text in a toned block. .prose sets its own colour variables (in
+   * this layer, from the typography plugin and theme), so the tone has to
+   * be applied on the .prose element itself, with higher specificity.
+   */
+  :is(.sw-tone-light, .sw-tone-dark) .prose,
+  .prose:is(.sw-tone-light, .sw-tone-dark) {
+    --tw-prose-body: var(--sw-tone);
+    --tw-prose-headings: var(--sw-tone);
+    --tw-prose-lead: var(--sw-tone);
+    --tw-prose-links: var(--sw-tone);
+    --tw-prose-bold: var(--sw-tone);
+    --tw-prose-counters: var(--sw-tone);
+    --tw-prose-bullets: var(--sw-tone);
+    --tw-prose-quotes: var(--sw-tone);
+    --tw-prose-quote-borders: color-mix(in oklab, var(--sw-tone) 40%, transparent);
+    --tw-prose-captions: color-mix(in oklab, var(--sw-tone) 75%, transparent);
+    --tw-prose-code: var(--sw-tone);
+    --tw-prose-hr: color-mix(in oklab, var(--sw-tone) 25%, transparent);
+  }
+
+  /* Bands touch each other, but one following a plain block needs space */
+  .sw-elements > :not(.sw-band) + .sw-band {
+    @apply mt-section;
+  }
+
+  /* Right under the page title, the first block needs no extra space */
+  .sw-after-header > .sw-elements > .sw-auto-top:first-child {
+    @apply mt-0;
+  }
+
+  /* Before the footer, a plain last block needs one section spacing */
+  .sw-elements > .sw-auto-bottom:last-child {
+    @apply mb-section;
+  }
+
+  /*
+   * Dark and brand-coloured headers (Settings > Theme > Header). The
+   * primary colour used for menu hover/current/open states wouldn't show on
+   * these, so menu items keep the header's text colour: a slight fade on
+   * hover, an underline for the current section. Ghost buttons (icons, the
+   * menu toggle) hover with a tint of the text colour instead of daisyUI's
+   * light grey.
+   */
+  header:is([data-header-style="dark"], [data-header-style="primary"]) {
+    & .sw-nav-item {
+      color: inherit;
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      & :focus-visible {
+        outline-color: currentColor;
+      }
+    }
+
+    & .sw-nav-active > a {
+      text-decoration-line: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 0.4em;
+    }
+
+    & > nav .btn-ghost {
+      --btn-rest-fg: currentColor;
+      --btn-fg: currentColor;
+
+      &:hover {
+        --btn-bg: color-mix(in oklab, currentColor 14%, transparent);
+        --btn-border: transparent;
+      }
+    }
+  }
+
+  /* Columns next to a sidebar: blocks can't set widths, so space them evenly */
+  .sw-stacked > .sw-elements {
+    @apply gap-8;
+  }
+}

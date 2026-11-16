@@ -1,0 +1,16 @@
+{
+    "name": "antlion/silverwind",
+    "description": "Silverwind: a Silverstripe CMS theme built on Tailwind CSS 4, daisyUI 5, Alpine.js and Alpine AJAX",
+    "type": "silverstripe-theme",
+    "license": "BSD-3-Clause",
+    "require": {
+        "silverstripe/framework": "^6.0",
+        "silverstripe/cms": "^6.0"
+    },
+    "extra": {
+        "expose": [
+            "dist",
+            "images"
+        ]
+    }
+}

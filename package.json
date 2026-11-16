@@ -1,0 +1,22 @@
+{
+  "name": "silverwind",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch --mode development",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.20",
+    "@tailwindcss/vite": "^4.3.4",
+    "daisyui": "^5.7.50",
+    "tailwindcss": "^4.3.4",
+    "vite": "^8.3.5"
+  },
+  "dependencies": {
+    "@alpinejs/collapse": "^3.17.5",
+    "@alpinejs/focus": "^3.17.5",
+    "@imacrayon/alpine-ajax": "^0.12.7",
+    "alpinejs": "^3.17.5"
+  }
+}

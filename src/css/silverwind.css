@@ -1,0 +1,22 @@
+/*
+ * Front-end stylesheet entry (imported by src/js/silverwind.js).
+ *
+ * Automatic source detection is off: Tailwind only generates classes found
+ * in the paths listed below. Modules that ship Tailwind templates (e.g.
+ * silverwind-blocks) must be added here with their own @source line.
+ */
+@import "tailwindcss" source(none);
+@import "./theme.css";
+@import "./layout.css";
+@import "./forms.css";
+
+@source "../../templates";
+@source "../js";
+@source "../../../../app/templates";
+
+/* Modules with Tailwind templates. Their PHP is scanned too, for class maps. */
+@source "../../../../vendor/antlion/silverwind-blocks/templates";
+@source "../../../../vendor/antlion/silverwind-blocks/src";
+
+/* Classes built from CMS values ($MegaMenuColumns, $ChildGridColumns) */
+@source inline("{sm:,lg:,}grid-cols-{1,2,3,4,5,6}");
