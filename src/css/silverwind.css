@@ -19,6 +19,8 @@
 @source "../../../../vendor/antlion/silverwind-blocks/src";
 @source "../../../../vendor/antlion/store-location/templates";
 @source "../../../../vendor/antlion/store-location/src";
+@source "../../../../vendor/antlion/silverwind-site/templates";
+@source "../../../../vendor/antlion/silverwind-site/src";
 
 /* Classes built from CMS values ($MegaMenuColumns, $ChildGridColumns) */
 @source inline("{sm:,lg:,}grid-cols-{1,2,3,4,5,6}");
