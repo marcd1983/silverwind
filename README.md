@@ -39,6 +39,32 @@ don't need Node.
 - **Forms:** Silverstripe's default form markup (core forms, userforms) is
   styled in `src/css/forms.css`, so form templates don't need overriding.
 
+## Project hooks
+
+The theme calls these if the project provides them, and renders nothing
+otherwise:
+
+| Hook | Where | Purpose |
+|---|---|---|
+| `$SiteScripts('head' \| 'body-start' \| 'body-end')` | `DocumentHeader.ss`, `Page.ss` | Third-party scripts (analytics, tag managers) |
+| `$BeforeFooter` | `Page.ss`, outside the footer cache | E.g. a site-wide call-to-action band |
+| `$SearchExcerpt($Query)` | `Layout/Page_results.ss` | A result's passage around the search words |
+
+## Cookie consent
+
+`src/js/components/consent-gate.js` switches on content that waits for a
+cookie consent group (innoweb/silverstripe-cookie-consent). The server prints
+it inert and tagged with `data-cookie-consent="Group"`:
+
+- `<script type="text/plain" data-cookie-consent="Analytics">` (original
+  `src` and `type` in `data-src`/`data-type`)
+- `<iframe|img data-cookie-consent="External" data-src="…">`, `<link … data-href>`
+
+It activates them for the groups in the consent cookie (`<body
+data-consent-cookie>`) on load, and when the visitor accepts in the banner,
+without a reload. Activated elements fire a bubbling `consent-activated`
+event (e.g. to hide a "Load map" placeholder).
+
 ## Templates
 
 | Template | Purpose |

@@ -3,9 +3,9 @@
 <% require themedCSS('dist/silverwind') %>
 <% require themedJavascript('dist/silverwind', 'module') %>
 <% include DocumentHeader %>
-<body class="$ClassName.ShortName flex min-h-screen flex-col bg-base-100 text-base-content antialiased"<% if $i18nScriptDirection %> dir="$i18nScriptDirection"<% end_if %>>
+<body class="$ClassName.ShortName flex min-h-screen flex-col bg-base-100 text-base-content antialiased" data-consent-cookie="$CookieConsentCookieName.ATT"<% if $i18nScriptDirection %> dir="$i18nScriptDirection"<% end_if %>>
     <a href="#main-content" class="sw-skip-link"><%t Silverwind.SkipToContent 'Skip to content' %></a>
-    <% if $SiteConfig.BodyScripts %>$SiteConfig.BodyScripts.RAW<% end_if %>
+    $SiteScripts('body-start')
 
     <% include Header %>
 
@@ -20,7 +20,7 @@
     <% include Footer %>
     <% include CookieConsent %>
 
-    <% if $SiteConfig.FooterScripts %>$SiteConfig.FooterScripts.RAW<% end_if %>
+    $SiteScripts('body-end')
     <% if $HasPerm('CMS_ACCESS') %>$SilverStripeNavigator<% end_if %>
 </body>
 </html>

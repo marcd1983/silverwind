@@ -14,7 +14,10 @@
             <% loop $Results %>
                 <li class="py-5">
                     <h2 class="text-lg font-semibold"><a href="$Link" class="link link-hover link-primary">$MenuTitle.XML</a></h2>
-                    <% if $MetaDescription %>
+                    <%-- $SearchExcerpt is an optional project hook: a passage around the search words (matches in <mark>) --%>
+                    <% if $SearchExcerpt($Top.Query) %>
+                        <p class="mt-1 opacity-80 [&_mark]:bg-warning/40 [&_mark]:text-inherit">$SearchExcerpt($Top.Query)</p>
+                    <% else_if $MetaDescription %>
                         <p class="mt-1 opacity-80">$MetaDescription.XML</p>
                     <% else_if $Content %>
                         <p class="mt-1 opacity-80">$Content.LimitWordCount(40)</p>
