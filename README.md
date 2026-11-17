@@ -43,7 +43,7 @@ don't need Node.
 
 | Template | Purpose |
 |---|---|
-| `Page.ss` | Document shell: skip link, header, `$PageSlider`, `$Layout`, footer, cookie consent |
+| `Page.ss` | Document shell: skip link, header, `$PageSlider`, `$Layout`, `$BeforeFooter` (optional project hook, e.g. a site-wide CTA band), footer, cookie consent |
 | `Includes/Header.ss` + `Includes/Nav/*` | Desktop dropdown and mega menus (per page: Dropdown, List, Gallery, Tabs), search, account menu, mobile menu |
 | `Includes/Footer.ss` | Footer menu sets, store locations, bottom links, social links |
 | `Layout/Page.ss`, `BlockPage.ss`, `HomePage.ss`, `Page_results.ss` | Page layouts and search results |

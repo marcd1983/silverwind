@@ -14,6 +14,9 @@
         $Layout
     </main>
 
+    <%-- Project hook for content between the page and the footer (e.g. a site-wide call-to-action). Outside the footer's cache, so it can vary per page and by date --%>
+    $BeforeFooter
+
     <% include Footer %>
     <% include CookieConsent %>
 
