@@ -73,6 +73,23 @@
     font-family: var(--font-heading);
   }
 
+  /* Accordions from the editor's accordion plugin (<details><summary>) */
+  .prose details {
+    @apply my-4 rounded-box border border-base-300 bg-base-100 px-4 py-3;
+  }
+
+  .prose details > summary {
+    @apply cursor-pointer font-semibold;
+  }
+
+  .prose details[open] > summary {
+    @apply mb-2;
+  }
+
+  .prose details > :last-child {
+    @apply mb-0;
+  }
+
   /* Let rich text follow the daisyUI theme instead of typography's grays */
   .prose {
     --tw-prose-body: var(--color-base-content);
